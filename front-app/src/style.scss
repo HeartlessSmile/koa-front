@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#app {
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+$num: 8;
+
+@while $num < 24 {
+  .ml-#{$num} {
+    margin-left: #{$num}px;
+  }
+  .mt-#{$num} {
+    margin-top: #{$num}px;
+  }
+  .mb-#{$num} {
+    margin-bottom: #{$num}px;
+  }
+  .mr-#{$num} {
+    margin-right: #{$num}px;
+  }
+
+  $num: $num + 4;
+}
