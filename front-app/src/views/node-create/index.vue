@@ -21,6 +21,10 @@
       <el-switch v-model="ruleForm.hasApi" />
     </el-form-item>
 
+    <el-form-item label="是否新表格" prop="hasApi">
+      <el-switch v-model="ruleForm.isNew" />
+    </el-form-item>
+
     <!-- 表格列表页面 -->
     <div v-show="ruleForm.type == 'pageList'">
       <PageList ref="pageListRef" />
@@ -57,12 +61,14 @@ const projectList = [
   { name: '税务申报', key: 'declare' },
   { name: '税务运维', key: 'declare-back' },
   { name: '税务档案', key: 'tax-file' },
+  { name: '业务建模', key: 'taxes-calculation' },
 ]
 const ruleForm = reactive({
   name: 'abcd',
-  project: 'declare',
+  project: 'taxes-calculation',
   hasApi: false,
-  type: 'tabsList',
+  isNew: false,
+  type: 'pageList',
   tabs: [{ name: '选项一', value: '111' }],
 })
 const rules = reactive({
@@ -92,6 +98,7 @@ const submitForm = (formEl) => {
       create({
         ...ruleForm,
         hasApi: ruleForm.hasApi,
+        isNew: resetForm.isNew,
         isMultipleTable: pageListRef.value.isMultipleTable,
         searchTableData: pageListRef.value.searchTableData,
         columnTableData: pageListRef.value.columnTableData,

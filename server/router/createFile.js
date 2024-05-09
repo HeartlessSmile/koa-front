@@ -24,6 +24,12 @@ Router.post('/', (ctx, next) => {
       filePath: 'components/tax-file',
       api: 'api/tax-file',
     },
+    'taxes-calculation': {
+      path: './taxes-calculation/src',
+      filePath: 'components/views',
+      api: 'api',
+      isNew: true,
+    },
   }
 
   const item = pathObject[bodyData.project]
@@ -70,14 +76,27 @@ Router.post('/', (ctx, next) => {
     }
     if (bodyData.type == 'pageList') {
       // 创建index.vue + 内容
+      let templatePath = item.isNew || bodyData.isNew ? 'newpageList.vue' : 'pageList.vue'
 
-      let str = nunjucks.render('pageList.vue', {
+      let str = nunjucks.render(templatePath, {
         fileName,
         ...bodyData,
         selectSearchList: bodyData.searchTableData.filter((el) => el.type == 'select'),
         multipleSearchList: bodyData.searchTableData.filter((el) => el.type == 'select' && el.multiple),
       })
       fs.writeFileSync(path.join(filePath, 'index.vue'), str, 'utf-8')
+
+      // 如果是新表格  顺便创建一个编辑抽屉和详情抽屉
+      if (item.isNew || bodyData.isNew) {
+        let hasDir = fs.existsSync(filePath + '/components')
+        if (!hasDir) {
+          fs.mkdirSync(filePath + '/components')
+        }
+        let editDrawerStr = nunjucks.render('editDrawer.vue', {})
+        fs.writeFileSync(path.join(filePath, 'components', 'editDrawer.vue'), editDrawerStr, 'utf-8')
+        let detailDrawerStr = nunjucks.render('detailDrawer.vue', {})
+        fs.writeFileSync(path.join(filePath, 'components', 'detailDrawer.vue'), detailDrawerStr, 'utf-8')
+      }
     } else {
       console.log(bodyData.type)
       const { tabs } = bodyData
