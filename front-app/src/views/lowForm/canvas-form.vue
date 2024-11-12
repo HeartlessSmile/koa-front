@@ -52,7 +52,6 @@ const log = (evt) => {
 .form-widget-list {
   padding: 8px;
   border: 1px solid #e6e6e6;
-  width: 100%;
   height: 100%;
   overflow-y: auto;
   .form-drag-list {

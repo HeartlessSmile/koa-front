@@ -78,6 +78,7 @@ const cloneDog = (item) => {
   .canvas-layout {
     flex: 1 1;
     height: calc(100vh - 60px);
+    padding: 16px;
     overflow: hidden;
     position: relative;
   }
