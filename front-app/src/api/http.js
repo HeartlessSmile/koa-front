@@ -4,7 +4,7 @@ const { VITE_BASE_API } = useEnv()
 
 const service = axios.create({
   baseURL: VITE_BASE_API,
-  timeout: 10 * 1000, // 请求超时时间
+  timeout: 100 * 1000, // 请求超时时间
   headers: { 'Content-Type': 'application/json;charset=UTF-8' },
 })
 

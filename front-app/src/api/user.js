@@ -6,3 +6,15 @@ export const getUserList = () => {
     method: 'get',
   })
 }
+
+export const getTest = (params) => {
+  return service.get('/api/user/test', { params })
+}
+
+export const uploadFleApi = (params) => {
+  return service.post('/api/user/uploadFile', params, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  })
+}

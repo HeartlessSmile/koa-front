@@ -16,6 +16,9 @@
           <el-menu-item index="/cut-file">
             <span>文件切割</span>
           </el-menu-item>
+          <el-menu-item index="/more-http">
+            <span>多请求并发</span>
+          </el-menu-item>
           <el-menu-item index="/virtuallist">
             <span>虚拟滚动</span>
           </el-menu-item>

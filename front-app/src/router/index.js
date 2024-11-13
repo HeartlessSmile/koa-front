@@ -18,6 +18,7 @@ const routes = [
       { path: '/flow', component: () => import('@/views/flow/index.vue') },
       { path: '/createFile', component: createFile },
       // add-router
+      { path: '/more-http', component: () => import('@/views/moreHttp/index.vue') },
 
       { path: '/node-create', component: () => import('@/views/node-create/index.vue') },
       { path: '/cut-file', component: () => import('@/views/cut-file/index.vue') },
